@@ -1,6 +1,8 @@
 var express = require('express')
 var http = require('http')
 var app = express()
+const port = process.env.PORT || 8000;
+let server = require('http').Server(app);
 const controller = require("../dojo_node/controller/roman-numerals.controller");
 
 app.get('/', (req, res) => {
@@ -8,6 +10,6 @@ app.get('/', (req, res) => {
 })
 
 app.get("/numerals/:number", controller.romanNumber);
-http.createServer(app).listen(8001, () => {
-    console.log('Server started at http://localhost:8001');
+server.listen(port, () => {
+    console.log("App is running on port " + port);
 });
